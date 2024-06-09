@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Motivation Msg App V3 btnless</title>
+</head>
+<body>
+    <center>
+        <h1>Motivation Msg</h1>
+        <h2 id="msg"></h2>
+        <h2 id="auth"></h2>
+        <script>
+            function gm(){
+                event.preventDefault();
+                let msg = document.getElementById("msg");
+                let auth = document.getElementById("auth");
+                let url = "http://api.quotable.io/random";
+                fetch(url)
+                .then(res=> res.json())
+                .then(data => {
+                    msg.innerHTML = data.content;
+                    auth.innerHTML = data.author;
+                })
+                .catch(err => msg.innerHTML = "issue " + err);
+            }
+            gm();
+            setInterval(gm,5000);
+        </script>
+    </center>
+</body>
+</html>
